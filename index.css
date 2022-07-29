@@ -1,0 +1,14 @@
+  .invisible {
+    display: none;
+  }
+  
+  .visible {
+    display: block;
+  }
+  .cover-container {
+    max-width: 80rem;
+  }
+  .row {
+    padding: 25px;
+  }
+ 

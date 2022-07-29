@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css"
+    <title>DEV.F</title>
+</head>
+<body>
+  <!--<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Ingreso</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Consula de Saldo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Retiro</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Deposito</a>
+    </li>
+  </ul>
+  </nav>-->
+    <!--Pantalla de cuentas--> 
+    <body class="text-center text-white bg-dark">
+
+        <div class="cover-container w-100 h-100 p-10 mx-auto flex-column">     
+        
+          <div id="account_screen">
+            <h1>Simulación cajero Automatico</h1>            
+            <hr><hr>
+            <h4 class="title">Selecciona tu cuenta</h4>
+            <br>
+            <div class="row justify-content-md-center" id="grid-cuentas">              
+            </div>
+            <br>
+            <div class="row invisible justify-content-md-center" id="contrasena">
+              <hr><hr>
+              <h4>Ingresa tu password</h4>
+              <div class="col-sm-8 col-md-3">            
+              <input type="password" class="form-control" id="password" placeholder="contraseña"
+                  onkeydown="checkKey(event);" aria-describedby="invalidPassword" required>
+                <div id="invalidPassword " class="invalid-feedback">
+                  Constraseña incorrecta.
+                </div>
+              </div>
+            </div>
+          </div>
+               
+          <!-- Menú-->
+          <div class="invisible" id="menu_screen">
+            <h2>MENÚ</h2>
+            <hr><hr>
+            <h4>Selecciona la opción deseada</h4>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-12 col-md-4 text-center">
+                <button class="btn btn-secondary btn-lg" id="consultar_saldo">Consultar saldo </button>
+              </div>
+            </div> 
+            <div class="row justify-content-md-center">
+              <div class="col-sm-12 col-md-4  text-center">
+                <button class="btn btn-secondary btn-lg" id="deposito">Depósito</button>
+              </div> 
+            </div>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-12 col-md-4  text-center">
+                <button class="btn btn-secondary btn-lg" id="retiro">Retiro</button>
+              </div>
+            </div>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-12 col-md-4  text-center">
+                <button class="btn btn-warning btn-lg" id="exit">Salir</button>
+              </div>
+            </div>
+          </div>
+              
+          <!-- Consulta de saldo-->
+          <div class="invisible" id="consult_screen">
+            <h1>Consulta de saldo</h1>
+            <br>
+            <hr><hr>
+            <br>
+            <h1 class="display-1" id="saldo"></h1>
+            <br>
+            <hr><hr>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-warning btn-lg" id="exit">Salir</button>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-secondary btn-lg" id="return">Regresar al menú</button>
+              </div>
+            </div>
+          </div>
+           
+          <!-- Depósito-->
+          <div class="invisible" id="deposit_screen">
+            <h1>Depositos</h1>
+            <br>
+            <hr><hr>
+            <br>
+            <div class="row justify-content-md-center">
+              <h4>Ingrese el monto a depositar</h4>
+              <div id="control"></div>
+              <div class="col-sm-8 col-md-3">
+                <input type="number" class="form-control" id="ingreso" placeholder="cantidad"
+                  aria-describedby="invalidIngreso" onkeydown="checkKey(event);" required>
+                <div id="invalidIngreso" class="invalid-feedback">
+                  Solo valor numerico mayor a cero y entero
+                </div>
+              </div>
+            </div>
+            <br>
+            <hr><hr>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-warning btn-lg" id="exit">Salir</button>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-secondary btn-lg" id="return">Regresar al menú</button>
+              </div>
+            </div>
+          </div>
+               
+          <!--Retiro-->
+          <div class="invisible" id="withdraw_screen">
+            <h1>Retiros</h1>
+            <br>
+            <hr><hr>
+            <br>
+            <div class="row justify-content-md-center">
+              <h4>Ingresa el monto a retirar</h4>
+              <div id="control2"></div>
+              <div class="col-sm-8 col-md-3">
+                <input type="number" class="form-control" id="egreso" placeholder="cantidad" aria-describedby="invalidRetiro"
+                  onkeydown="checkKey(event);" required>
+                <div id="invalidRetiro" class="invalid-feedback">
+                  Solo valor numerico mayor a cero y sin centavos.
+                </div>
+              </div>
+            </div>
+            <br>
+            <hr><hr>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-warning btn-lg" id="exit">Salir</button>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <button class="btn btn-secondary btn-lg" id="return">Regresar al menú</button>
+              </div>
+            </div>
+          </div>         
+        </div>
+      
+      
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script src="./Index.js"></script>
+      </body>
+      
+      </html>
